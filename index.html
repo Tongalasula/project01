@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BELISH LEEKIE SYSTEM</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>BELISH LEEKIE SYSTEM</h1>
+            <h2>wacha mambo wwe</h2>
+            <p>2026 KCSE Project Specification - Advanced Management System</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="nav-btn active" onclick="showSection('register')">Register Institution</button>
+            <button class="nav-btn" onclick="showSection('subscription')">Subscription</button>
+            <button class="nav-btn" onclick="showSection('payments')">Payments</button>
+            <button class="nav-btn" onclick="showSection('reports')">Reports</button>
+        </nav>
+
+        <main>
+            <!-- Data Entry Sections -->
+            <section id="register" class="report-section active">
+                <div class="card">
+                    <h2>Institutional Registration</h2>
+                    <form id="regForm">
+                        <div class="form-group">
+                            <label>Institution Name</label>
+                            <input type="text" id="instName" required placeholder="e.g. Greenhill Academy">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="instCat">
+                                <option value="Primary">Primary</option>
+                                <option value="Junior">Junior</option>
+                                <option value="Senior">Senior</option>
+                                <option value="College">College</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Person</label>
+                            <input type="text" id="contactPerson" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" id="contactPhone" required>
+                        </div>
+                        <button type="submit">Complete Registration</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="subscription" class="report-section">
+                <div class="card">
+                    <h2>Infrastructure & Subscription</h2>
+                    <form id="subForm">
+                        <div class="form-group">
+                            <label>Select Institution</label>
+                            <select id="subInst"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Bandwidth</label>
+                            <select id="subBandwidth">
+                                <option value="4">4MBPS (1,200)</option>
+                                <option value="10">10MBPS (2,000)</option>
+                                <option value="20">20MBPS (3,500)</option>
+                                <option value="25">25MBPS (4,000)</option>
+                                <option value="50">50MBPS (7,000)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of LAN Nodes</label>
+                            <input type="number" id="lanNodes" min="2" max="100" value="2">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of PCs Purchased</label>
+                            <input type="number" id="pcCount" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Is this an Upgrade?</label>
+                            <select id="isUpgrade">
+                                <option value="0">No</option>
+                                <option value="1">Yes (10% Discount)</option>
+                            </select>
+                        </div>
+                        <button type="submit">Setup Subscription</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="payments" class="report-section">
+                <div class="card">
+                    <h2>Payment Entry</h2>
+                    <form id="payForm">
+                        <div class="form-group">
+                            <label>Select Subscription</label>
+                            <select id="payInst"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Type</label>
+                            <select id="payType">
+                                <option value="Registration">Registration</option>
+                                <option value="Installation">Installation</option>
+                                <option value="Monthly">Monthly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Period (YYYY-MM)</label>
+                            <input type="month" id="payPeriod">
+                        </div>
+                        <div class="form-group">
+                            <label>Amount Paid</label>
+                            <input type="number" id="payAmount" min="0">
+                        </div>
+                        <button type="submit">Record Payment</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="report-section">
+                <div class="card">
+                    <h2>Management Reports</h2>
+                    <div class="nav-tabs" style="justify-content: flex-start;">
+                        <button class="nav-btn" onclick="loadReport('institutions')">Registered Schools</button>
+                        <button class="nav-btn" onclick="loadReport('defaulters')">Defaulters List</button>
+                        <button class="nav-btn" onclick="loadReport('infrastructure')">Infrastructural Audit</button>
+                        <button class="nav-btn" onclick="loadReport('aggregate')">Aggregate Revenue</button>
+                    </div>
+                    <div id="reportContainer">
+                        <p style="text-align: center; color: rgba(255,255,255,0.5);">Select a report to view data</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.report-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
